@@ -2,20 +2,20 @@ const steamUser = require('steam-user');
 const steamTotp = require('steam-totp');
 const keep_alive = require('./keep_alive.js')
 
-var username = process.env.username;
+var username = 'bullrot.47@caramail.com';
 var password = process.env.password;
 var shared_secret = process.env.shared;
 
-var games = [730, 440, 570];  // Enter here AppIDs of the needed games
+var games = [730, 1172470, 570, 440, 10, 1599340, 304930, 578080, 872200, 1997040, 291550, 1665460, 1284210, 304050, 230410, 236390, 1049590, 444090, 436150, 1928420, 240, 335240];  // Enter here AppIDs of the needed games
 var status = 1;  // 1 - online, 7 - invisible
 
 
 user = new steamUser();
-user.logOn({"accountName": username, "password": password, "twoFactorCode": steamTotp.generateAuthCode(shared_secret)});
+user.logOn({ "accountName": username, "password": password, "twoFactorCode": steamTotp.generateAuthCode(shared_secret) });
 user.on('loggedOn', () => {
-	if (user.steamID != null) console.log(user.steamID + ' - Successfully logged on');
-	user.setPersona(status);               
-	user.gamesPlayed(games);
+  if (user.steamID != null) console.log(user.steamID + ' - Successfully logged on');
+  user.setPersona(status);
+  user.gamesPlayed(games);
 });
 
 
